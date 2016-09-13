@@ -6,6 +6,7 @@
 .nb-gradle
 .classpath
 .project
+.sass-cache
 .settings
 .site*
 bin
