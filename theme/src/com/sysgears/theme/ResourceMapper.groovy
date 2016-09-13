@@ -22,7 +22,7 @@ class ResourceMapper {
     def map = { resources ->
 
         def refinedResources = resources.findResults(filterPublished).collect { Map resource ->
-            fillDates << resource
+            fillRelatedPosts << fillDates << resource
         }
 
         refinedResources
@@ -43,5 +43,33 @@ class ResourceMapper {
         def update = [date: it.date ? Date.parse(site.datetime_format, it.date) : new Date(it.dateCreated as Long),
                 updated: it.updated ? Date.parse(site.datetime_format, it.updated) : new Date(it.lastUpdated as Long)]
         it + update
+    }
+
+    /**
+     * Fills in page 'related' field which may contain related posts.
+     *
+     * Related posts here are pages under /posts/ location which have at least one
+     * common entry in the "categories" list property.
+     */
+    private def fillRelatedPosts = { Map it ->
+        isPost(it) ?
+            it + [related: getPosts().grep { post -> !post.categories.disjoint(it.categories)}] :
+            it
+    }
+
+    /**
+     * Retrieves all the blog post pages of the website.
+     *
+     * @return website blog posts collection
+     */
+    private List<Map> getPosts() {
+        site.pages.findAll isPost
+    }
+
+    /**
+     * Checks whether provided resource is a blog post page or not.
+     */
+    private def isPost = { Map it ->
+        it.location.startsWith("/posts/")
     }
 }
