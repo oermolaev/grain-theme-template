@@ -63,13 +63,13 @@ class ResourceMapper {
      * @return website blog posts collection
      */
     private List<Map> getPosts() {
-        site.pages.findAll isPost
+        site.resources.findAll isPost
     }
 
     /**
      * Checks whether provided resource is a blog post page or not.
      */
     private def isPost = { Map it ->
-        it.location.startsWith("/posts/")
+        it.type == 'page' && it.location.startsWith("/posts/")
     }
 }
