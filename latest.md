@@ -1,11 +1,11 @@
-##Overview
+## Overview
 
-###Description
+### Description
 
 Grain framework is an open source static website generator for Groovy that provides extensible mechanisms for
 implementing custom static sites or generating software documentation.
 
-####Grain features
+#### Grain features
 
 Grain comes with the following high-level features:
 
@@ -17,7 +17,7 @@ Grain comes with the following high-level features:
  - built-in SASS/SCSS support
  - compression and minification for sources
 
-####Grain themes
+#### Grain themes
 
 Grain website project is called *theme*. Theme defines site structure, appearance and content arrangement.
 Typically, Grain theme ships with:
@@ -32,7 +32,7 @@ Grain has ready-made themes that can be found [here](http://sysgears.com/grain/t
 It is not required to know Groovy or any other programming language to use these themes, you still can easily
 manage content and set up your site.
 
-###Requirements
+### Requirements
 
 To run Grain framework you need [JDK 7 or later](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 Download and install the appropriate JDK for your operating system.
